@@ -1,6 +1,7 @@
 "use client";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
+import { useMediaQuery } from "@react-hook/media-query";
 // import { useRouter } from "next/navigation";
 // import { motion, useScroll, useTransform, useInView } from "motion/react";
 import { useRef } from "react";
@@ -21,6 +22,14 @@ interface ParallaxProps {
   baseVelocity: number;
 }
 
+const expertiseList = [
+  "SOCIAL MEDIA MARKETING",
+  "CONTENT CREATION",
+  "PAID ADVERTISING",
+  "WEB DESIGN",
+  "END TO END PRODUCTION",
+];
+
 export default function Home() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { amount: 0.2 });
@@ -28,6 +37,7 @@ export default function Home() {
   const founderIsInView = useInView(founderRef, { once: true });
   const footerRef = useRef(null); // Reference for the footer
   const footerIsInView = useInView(footerRef, { once: true });
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const containerVariants = {
     hidden: { opacity: 1 }, // Keeps the container visible
@@ -41,10 +51,15 @@ export default function Home() {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 1 } },
   };
+  const containerRef = useRef(null);
+  const diffRef = useRef(null);
+  const diffIsInView = useInView(diffRef, {
+    once: true, // 50% of the element needs to be in view to trigger the animation
+  });
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center">
-      <section className="sticky top-0 left-0 w-full h-[100vh]">
-        <div className="w-full h-[15vh] bg-black text-white py-5 text-center ">
+      <section className="sticky top-0 left-0 w-full sm:h-[100vh] h-full">
+        <div className="w-full sm:h-[15vh] h-[10vh] bg-black text-white py-5 text-center ">
           <ParallaxText baseVelocity={2}>
             LEADING THE MARKETING EVOLUTION
           </ParallaxText>
@@ -53,7 +68,7 @@ export default function Home() {
           </ParallaxText>
         </div>
 
-        <div className="w-full h-[10vh] bg-white text-black items-center justify-center flex text-center">
+        <div className="w-full sm:h-[10vh] h-[8vh] bg-white text-black items-center justify-center flex text-center">
           <Image
             src={"/logo.png"}
             alt="logo"
@@ -62,23 +77,33 @@ export default function Home() {
             className="h-full object-contain"
           />
         </div>
-        <div className="w-full h-[100vh] bg-black text-white  text-center">
-          <Image
-            src={"/banner_d.JPG"}
-            width={1920}
-            height={1080}
-            alt="banner"
-            className="w-[1920px] h-[580px] object-contain"
-          />
+        <div className="w-full sm:h-[100vh] h-[80vh] bg-black text-white text-center">
+          {isDesktop ? (
+            <Image
+              src={"/banner_d.JPG"}
+              width={1920}
+              height={1080}
+              alt="Desktop Image"
+              className="w-[1920px] h-[580px] object-contain"
+            />
+          ) : (
+            <Image
+              src={"/banner_b.JPG"}
+              width={375}
+              height={200}
+              alt="Mobile Banner"
+              className="w-full h-[80vh] object-contain"
+            />
+          )}
         </div>
       </section>
       {/* <section className="w-full h-[100vh] bg-white"></section> */}
       <section
         ref={ref}
-        className="z-10 w-full h-[100vh] bg-white text-black flex flex-col justify-center gap-20 px-48"
+        className="z-10 w-full sm:py-0 py-5 sm:h-[100vh] h-full bg-white text-black flex flex-col justify-center gap-20 sm:px-48 px-5"
       >
         <motion.div
-          className="text-5xl leading-relaxed"
+          className="sm:text-5xl text-2xl leading-relaxed"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
@@ -97,7 +122,7 @@ export default function Home() {
           </motion.p>
         </motion.div>
         <motion.p
-          className="w-full text-right text-3xl"
+          className="w-full text-right sm:text-3xl text-xl"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={lineVariants}
@@ -109,36 +134,78 @@ export default function Home() {
       <section className="w-full h-[50vh] bg-black z-10">
         SOME GRAPHICAL ELIMENTS USING AI
       </section>
-      <section className="w-full h-[100vh] bg-white z-10 text-black px-48 py-10">
-        <h1 className="text-center text-4xl font-bold">
-          OUR <span className="bg-yellow-300 p-2 rounded-sm">EXPERTISE</span>
+      <section
+        ref={containerRef}
+        className="relative w-full h-full bg-white z-10 text-black sm:px-48 px-5 py-16"
+      >
+        {/* Title */}
+        <h1 className=" bg-white w-full text-center sm:text-4xl text-2xl font-bold mb-8">
+          OUR{" "}
+          <span className="bg-yellow-300 px-3 py-1 rounded-sm">EXPERTISE</span>
         </h1>
-        <p>SOCIAL MEDIA MARKETING</p>
-        <p>CONTENT CREATION</p>
-        <p>PAID ADVERTISING</p>
-        <p>WEB DESIGN</p>
-        <p>END TO END PRODUCTION</p>
 
-        <h2>
+        {/* Expertise List */}
+        <div className="w-full py-20">
+          <ul className="space-y-8">
+            {expertiseList.map((item, index) => (
+              <motion.li
+                key={index}
+                className="text-center text-lg sm:text-5xl font-medium"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+              >
+                {item}
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Quote */}
+        <h2 className="mt-12 text-center text-xl sm:text-2xl font-semibold italic text-gray-600">
           “UNIFI PRO IS THE Ultimate Hub for E-commerce Marketing Solutions”
         </h2>
       </section>
-      <section className="w-full h-[100vh] bg-white z-10 text-black px-48 py-10">
-        <h1 className="text-center text-4xl font-bold">
+
+      <section
+        ref={diffRef}
+        className="w-full sm:h-[100vh] h-full bg-white z-10 text-black sm:px-48 px-5 py-10"
+      >
+        {/* Title */}
+        <motion.h1
+          className="text-center sm:text-4xl text-2xl font-bold pb-5"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: diffIsInView ? 1 : 0 }}
+          transition={{ duration: 1 }}
+        >
           What Makes Us{" "}
           <span className="bg-yellow-300 p-2 rounded-sm">Different?</span>
-        </h1>
+        </motion.h1>
+
+        {/* Content */}
         <div className="h-full flex flex-col items-center justify-center gap-28">
-          <p className="text-4xl ">
-            AI e-commerce: At UNIFI PRO we use artificial intelligence (Al)
+          <motion.p
+            className="sm:text-4xl text-2xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: diffIsInView ? 1 : 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            AI e-commerce: At UNIFI PRO we use artificial intelligence (AI)
             technologies to improve the online retail experience for customers
             and businesses
-          </p>
-          <p className="text-4xl">
-            we don&apos;t just market; we create revolutions. Our Al-powered
+          </motion.p>
+
+          <motion.p
+            className="sm:text-4xl text-2xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: diffIsInView ? 1 : 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
+            We don&apos;t just market; we create revolutions. Our AI-powered
             strategies ensure your brand gets noticed, loved, and shared. From
-            viral trends to bespoke campaigns, we redefine how marketing works
-          </p>
+            viral trends to bespoke campaigns, we redefine how marketing works.
+          </motion.p>
         </div>
       </section>
       <section className="w-full h-[50vh] bg-black z-10">
@@ -146,7 +213,7 @@ export default function Home() {
       </section>
       <section
         ref={founderRef}
-        className="w-full h-[100vh] bg-white z-10 py-10 px-48 flex flex-col items-center justify-center"
+        className="w-full  h-full bg-white z-10 py-10 sm:px-48 px-5 flex flex-col items-center justify-center"
       >
         {/* Founder Details */}
         <motion.div
@@ -168,7 +235,7 @@ export default function Home() {
 
         {/* Description */}
         <motion.p
-          className="text-black text-3xl text-center my-24"
+          className="text-black sm:text-3xl text-xl text-center my-24"
           initial={{ opacity: 0, y: 50 }}
           animate={founderIsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.2 }}
@@ -193,33 +260,33 @@ export default function Home() {
       </section>
       <footer
         ref={footerRef}
-        className="w-full h-full bg-black flex z-10 px-48 py-10 pt-32 gap-10"
+        className="w-full h-full bg-black flex flex-col md:flex-row z-10 px-6 md:px-24 lg:px-48 py-10 pt-16 md:pt-32 gap-6 md:gap-10"
       >
         {/* Social Media */}
         <motion.div
-          className="flex-1 flex flex-col gap-5 pt-28"
+          className="flex-1 flex flex-col gap-5 pt-10 md:pt-28"
           initial={{ opacity: 0, y: 50 }}
           animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1 }}
         >
-          <div className="flex gap-2">
+          <div className="flex gap-4">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.2 }}
             >
-              <FaInstagram className="text-white h-12 w-12" />
+              <FaInstagram className="text-white h-8 w-8 md:h-12 md:w-12" />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.4 }}
             >
-              <FaLinkedin className="text-white h-12 w-12" />
+              <FaLinkedin className="text-white h-8 w-8 md:h-12 md:w-12" />
             </motion.div>
           </div>
           <motion.p
-            className="text-sm"
+            className="text-xs md:text-sm text-gray-300"
             initial={{ opacity: 0, y: 50 }}
             animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.6 }}
@@ -230,14 +297,16 @@ export default function Home() {
 
         {/* Reach out to us */}
         <motion.div
-          className="flex flex-col gap-2"
+          className="flex flex-col gap-2 text-gray-300"
           initial={{ opacity: 0, y: 50 }}
           animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.8 }}
         >
-          <h2 className="font-bold mb-3">REACH OUT TO US TODAY</h2>
+          <h2 className="font-bold text-sm md:text-base mb-2">
+            REACH OUT TO US TODAY
+          </h2>
           <motion.p
-            className="hover:underline transition-all duration-200"
+            className="hover:underline transition-all duration-200 text-xs md:text-sm"
             initial={{ opacity: 0, y: 50 }}
             animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 1 }}
@@ -245,7 +314,7 @@ export default function Home() {
             CALL: +91 7995877636
           </motion.p>
           <motion.p
-            className="hover:underline transition-all duration-200"
+            className="hover:underline transition-all duration-200 text-xs md:text-sm"
             initial={{ opacity: 0, y: 50 }}
             animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 1.2 }}
@@ -256,13 +325,14 @@ export default function Home() {
 
         {/* Our Address */}
         <motion.div
-          className="flex flex-col gap-2"
+          className="flex flex-col gap-2 text-gray-300"
           initial={{ opacity: 0, y: 50 }}
           animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 1.4 }}
         >
-          <h2 className="font-bold mb-3">OUR ADDRESS</h2>
+          <h2 className="font-bold text-sm md:text-base mb-2">OUR ADDRESS</h2>
           <motion.p
+            className="text-xs md:text-sm"
             initial={{ opacity: 0, y: 50 }}
             animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 1.6 }}
@@ -270,6 +340,7 @@ export default function Home() {
             Plot No. 833, 9th Phase,
           </motion.p>
           <motion.p
+            className="text-xs md:text-sm"
             initial={{ opacity: 0, y: 50 }}
             animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 1.8 }}
@@ -323,7 +394,7 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
   return (
     <div className="overflow-hidden tracking-widest leading-3 m-0 whitespace-nowrap flex flex-nowrap">
       <motion.div
-        className="font-bold uppercase text-4xl flex whitespace-nowrap flex-nowrap"
+        className="font-bold uppercase sm:text-4xl text-2xl flex whitespace-nowrap flex-nowrap"
         style={{ x }}
       >
         <span>{children} </span>
