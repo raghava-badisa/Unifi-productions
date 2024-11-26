@@ -13,6 +13,9 @@ export default {
         foreground: "var(--foreground)",
       },
     },
+    fontFamily: {
+      belleza: ["Belleza"],
+    },
   },
   plugins: [],
 } satisfies Config;

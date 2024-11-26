@@ -57,7 +57,7 @@ export default function Home() {
     once: true, // 50% of the element needs to be in view to trigger the animation
   });
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center">
+    <div className="font-belleza relative w-full h-full flex flex-col items-center justify-center">
       <section className="sticky top-0 left-0 w-full sm:h-[100vh] h-full">
         <div className="w-full sm:h-[15vh] h-[10vh] bg-black text-white py-5 text-center ">
           <ParallaxText baseVelocity={2}>
@@ -68,11 +68,11 @@ export default function Home() {
           </ParallaxText>
         </div>
 
-        <div className="w-full sm:h-[10vh] h-[8vh] bg-white text-black items-center justify-center flex text-center">
+        <div className="w-full sm:h-[10vh] h-[6vh] bg-white text-black items-center justify-center flex text-center">
           <Image
             src={"/logo.png"}
             alt="logo"
-            width={200}
+            width={150}
             height={100}
             className="h-full object-contain"
           />
@@ -145,18 +145,20 @@ export default function Home() {
         </h1>
 
         {/* Expertise List */}
-        <div className="w-full py-20">
-          <ul className="space-y-8">
+        <div className="w-full py-10">
+          <ul className="space-y-4">
             {expertiseList.map((item, index) => (
               <motion.li
                 key={index}
-                className="text-center text-lg sm:text-5xl font-medium"
+                className="flex items-center justify-start text-lg sm:text-3xl font-medium gap-2"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
               >
-                {item}
+                <span className="text-primary">➔</span>{" "}
+                {/* Use an arrow or point */}
+                <span>{item}</span>
               </motion.li>
             ))}
           </ul>
@@ -243,14 +245,14 @@ export default function Home() {
           Raghava Badisa is the founder & CEO of UNIFI PRO, a cutting-edge
           digital marketing agency dedicated to helping e-commerce businesses
           thrive in the competitive online marketplace. With a passion for
-          innovation and a deep understanding of the digital landscape,
-          I&apos;ve built UNIFI PRO into a trusted partner for businesses
-          looking to crack the code of online marketing success.
+          innovation and a deep understanding of the digital landscape, we have
+          build UNIFI PRO into a trusted partner for businesses looking to crack
+          the code of online marketing success.
         </motion.p>
 
         {/* Button */}
         <motion.button
-          className="text-white text-3xl bg-black px-7 py-4 rounded-full"
+          className="text-white sm:text-3xl text-xl bg-black sm:px-7 sm:py-4 px-5 py-2 rounded-full"
           initial={{ opacity: 0, y: 50 }}
           animate={founderIsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.4 }}
@@ -345,7 +347,7 @@ export default function Home() {
             animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 1.8 }}
           >
-            KPH Colony, Hyderabad, Telangana 50008
+            KPHB Colony, Hyderabad, Telangana 500085
           </motion.p>
         </motion.div>
       </footer>
@@ -397,10 +399,10 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
         className="font-bold uppercase sm:text-4xl text-2xl flex whitespace-nowrap flex-nowrap"
         style={{ x }}
       >
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
+        <span className="mx-4">{children}</span>
+        <span className="mx-4">{children}</span>
+        <span className="mx-4">{children}</span>
+        <span className="mx-4">{children}</span>
       </motion.div>
     </div>
   );
