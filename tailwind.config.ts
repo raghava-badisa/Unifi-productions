@@ -14,7 +14,7 @@ export default {
       },
     },
     fontFamily: {
-      belleza: ["Belleza"],
+      libreFranklin: ["Libre Franklin", "sans-serif"],
     },
   },
   plugins: [],

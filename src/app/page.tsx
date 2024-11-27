@@ -57,9 +57,9 @@ export default function Home() {
     once: true, // 50% of the element needs to be in view to trigger the animation
   });
   return (
-    <div className="font-belleza relative w-full h-full flex flex-col items-center justify-center">
+    <div className="font-libreFranklin relative w-full h-full flex flex-col items-center justify-center">
       <section className="sticky top-0 left-0 w-full sm:h-[100vh] h-full">
-        <div className="w-full sm:h-[15vh] h-[10vh] bg-black text-white py-5 text-center ">
+        <div className="w-full sm:h-[15vh] h-full bg-black text-white py-5 text-center ">
           <ParallaxText baseVelocity={2}>
             LEADING THE MARKETING EVOLUTION
           </ParallaxText>
@@ -68,7 +68,7 @@ export default function Home() {
           </ParallaxText>
         </div>
 
-        <div className="w-full sm:h-[10vh] h-[6vh] bg-white text-black items-center justify-center flex text-center">
+        <div className="w-full sm:h-[10vh] h-full bg-white text-black items-center justify-center flex text-center">
           <Image
             src={"/logo.png"}
             alt="logo"
@@ -79,21 +79,27 @@ export default function Home() {
         </div>
         <div className="w-full sm:h-[100vh] h-[80vh] bg-black text-white text-center">
           {isDesktop ? (
-            <Image
-              src={"/banner_d.JPG"}
-              width={1920}
-              height={1080}
-              alt="Desktop Image"
-              className="w-[1920px] h-[580px] object-contain"
-            />
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-[1920px] h-[580px] object-cover"
+            >
+              <source src="/video_d.MP4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           ) : (
-            <Image
-              src={"/banner_b.JPG"}
-              width={375}
-              height={200}
-              alt="Mobile Banner"
-              className="w-full h-[80vh] object-contain"
-            />
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-[80vh] object-cover"
+            >
+              <source src="/video_m.MP4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           )}
         </div>
       </section>
@@ -237,7 +243,7 @@ export default function Home() {
 
         {/* Description */}
         <motion.p
-          className="text-black sm:text-3xl text-xl text-center my-24"
+          className="text-black sm:text-3xl text-xl text-center my-10"
           initial={{ opacity: 0, y: 50 }}
           animate={founderIsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.2 }}
