@@ -151,7 +151,7 @@ export default function Home() {
         </h1>
 
         {/* Expertise List */}
-        <div className="w-full py-10">
+        <div className="w-full ">
           <ul className="space-y-4">
             {expertiseList.map((item, index) => (
               <motion.li
@@ -192,7 +192,7 @@ export default function Home() {
         </motion.h1>
 
         {/* Content */}
-        <div className="h-full flex flex-col items-center justify-center gap-28">
+        <div className="h-full flex flex-col items-center justify-center gap-10">
           <motion.p
             className="sm:text-4xl text-2xl"
             initial={{ opacity: 0 }}
