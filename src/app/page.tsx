@@ -16,6 +16,7 @@ import {
   useInView,
 } from "motion/react";
 import { wrap } from "@motionone/utils";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 interface ParallaxProps {
   children: string;
@@ -23,11 +24,26 @@ interface ParallaxProps {
 }
 
 const expertiseList = [
-  "SOCIAL MEDIA MARKETING",
-  "CONTENT CREATION",
-  "PAID ADVERTISING",
-  "WEB DESIGN",
-  "END TO END PRODUCTION",
+  {
+    title: "SOCIAL MEDIAL MARKETING",
+    icon: "/mic.png",
+  },
+  {
+    title: "CONTENT CREATION",
+    icon: "/notes.png",
+  },
+  {
+    title: "PAID ADVERTISING",
+    icon: "/ads.png",
+  },
+  {
+    title: "WEB DESIGN",
+    icon: "/net.png",
+  },
+  {
+    title: "END TO END PRODUCTION",
+    icon: "/film.png",
+  },
 ];
 
 export default function Home() {
@@ -56,9 +72,31 @@ export default function Home() {
   const diffIsInView = useInView(diffRef, {
     once: true, // 50% of the element needs to be in view to trigger the animation
   });
+
+  const redirectToWhatsApp = () => {
+    const phoneNumber = "7995877636";
+    const message = encodeURIComponent(
+      "Hi! I’d like to connect with you today. Let's discuss further."
+    );
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, "_blank");
+  };
   return (
     <div className="font-libreFranklin relative w-full h-full flex flex-col items-center justify-center">
-      <section className="sticky top-0 left-0 w-full sm:h-[100vh] h-full">
+      <a
+        title="whatsapp icons"
+        className="h-10 w-10 sticky top-[90%] left-[80%] z-50 cursor-pointer "
+        onClick={redirectToWhatsApp}
+      >
+        <Image
+          src={"/social.png"}
+          alt="whatsapp"
+          width={50}
+          height={50}
+          className="h-10 w-10 cursor-pointer"
+        />
+      </a>
+      <section className=" w-full sm:h-[100vh] h-full">
         <div className="w-full sm:h-[15vh] h-full bg-black text-white py-5 text-center ">
           <ParallaxText baseVelocity={2}>
             LEADING THE MARKETING EVOLUTION
@@ -77,7 +115,7 @@ export default function Home() {
             className="h-full object-contain"
           />
         </div>
-        <div className="w-full sm:h-[100vh] h-[80vh] bg-black text-white text-center">
+        <div className="w-full sm:h-[100vh] h-[90vh] bg-black text-white text-center">
           {isDesktop ? (
             <video
               autoPlay
@@ -95,7 +133,7 @@ export default function Home() {
               loop
               muted
               playsInline
-              className="w-full h-[80vh] object-cover"
+              className="w-full h-[90vh] object-cover"
             >
               <source src="/video_m.MP4" type="video/mp4" />
               Your browser does not support the video tag.
@@ -138,7 +176,13 @@ export default function Home() {
         </motion.p>
       </section>
       <section className="w-full h-[50vh] bg-black z-10">
-        SOME GRAPHICAL ELIMENTS USING AI
+        <Image
+          src="/ai_b.PNG"
+          alt="ai generated image"
+          width={1920}
+          height={1080}
+          className="w-full h-full object-cover"
+        />
       </section>
       <section
         ref={containerRef}
@@ -152,7 +196,7 @@ export default function Home() {
 
         {/* Expertise List */}
         <div className="w-full ">
-          <ul className="space-y-4">
+          <ul className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-4">
             {expertiseList.map((item, index) => (
               <motion.li
                 key={index}
@@ -162,9 +206,16 @@ export default function Home() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
               >
-                <span className="text-primary">➔</span>{" "}
+                <span className="text-primary">
+                  <Image
+                    src={item.icon}
+                    alt={item.icon}
+                    width={50}
+                    height={20}
+                  />
+                </span>{" "}
                 {/* Use an arrow or point */}
-                <span>{item}</span>
+                <span>{item.title}</span>
               </motion.li>
             ))}
           </ul>
@@ -182,7 +233,7 @@ export default function Home() {
       >
         {/* Title */}
         <motion.h1
-          className="text-center sm:text-4xl text-2xl font-bold pb-5"
+          className="text-center sm:text-4xl text-2xl font-bold pb-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: diffIsInView ? 1 : 0 }}
           transition={{ duration: 1 }}
@@ -243,7 +294,7 @@ export default function Home() {
 
         {/* Description */}
         <motion.p
-          className="text-black sm:text-3xl text-xl text-center my-10"
+          className="text-black sm:text-3xl text-xl text-left my-10"
           initial={{ opacity: 0, y: 50 }}
           animate={founderIsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.2 }}
@@ -262,6 +313,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 50 }}
           animate={founderIsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.4 }}
+          onClick={redirectToWhatsApp}
         >
           Let’s connect <span className="text-yellow-300">TODAY</span>
         </motion.button>
@@ -291,6 +343,13 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.4 }}
             >
               <FaLinkedin className="text-white h-8 w-8 md:h-12 md:w-12" />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1, delay: 0.4 }}
+            >
+              <FaSquareXTwitter className="text-white h-8 w-8 md:h-12 md:w-12" />
             </motion.div>
           </div>
           <motion.p
@@ -327,7 +386,7 @@ export default function Home() {
             animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 1.2 }}
           >
-            E-MAIL: UNIFIPRODUCTIONS@GMAIL.COM
+            E-MAIL: unifiproductions@gmail.com
           </motion.p>
         </motion.div>
 
