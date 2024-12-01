@@ -26,23 +26,23 @@ interface ParallaxProps {
 const expertiseList = [
   {
     title: "SOCIAL MEDIAL MARKETING",
-    icon: "/mic.png",
+    icon: "/mic.PNG",
   },
   {
     title: "CONTENT CREATION",
-    icon: "/notes.png",
+    icon: "/notes.PNG",
   },
   {
     title: "PAID ADVERTISING",
-    icon: "/ads.png",
+    icon: "/ads.PNG",
   },
   {
     title: "WEB DESIGN",
-    icon: "/net.png",
+    icon: "/net.PNG",
   },
   {
     title: "END TO END PRODUCTION",
-    icon: "/film.png",
+    icon: "/film.PNG",
   },
 ];
 
