@@ -85,7 +85,7 @@ export default function Home() {
     <div className="font-libreFranklin relative w-full h-full flex flex-col items-center justify-center">
       <a
         title="whatsapp icons"
-        className="h-10 w-10 sticky top-[90%] left-[80%] z-50 cursor-pointer "
+        className="h-10 w-10 sticky top-[90%] sm:left-[90%]  left-[80%] z-50 cursor-pointer "
         onClick={redirectToWhatsApp}
       >
         <Image
@@ -317,6 +317,21 @@ export default function Home() {
         >
           Let’s connect <span className="text-yellow-300">TODAY</span>
         </motion.button>
+      </section>
+      <section className="relative bg-black w-full flex flex-col items-center justify-center">
+        <Image
+          width={1400}
+          height={500}
+          src="/charminar.jpg"
+          alt="map"
+          className="w-full object-contain"
+        />
+        <iframe
+          width="80%"
+          height="100%"
+          className="sm:h-[600px] h-full sm:px-5 px-2 sm:py-10 py-2 absolute"
+          src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Salivahana%20colony,%209th%20Phase,%20Kukatpally%20Housing%20Board%20Colony,%20Hyderabad,%20Telangana%20500085+(Unifi%20Productions)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+        ></iframe>
       </section>
       <footer
         ref={footerRef}
