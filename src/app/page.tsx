@@ -1,5 +1,5 @@
 "use client";
-import { FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import Image from "next/image";
 import { useMediaQuery } from "@react-hook/media-query";
 // import { useRouter } from "next/navigation";
@@ -17,6 +17,7 @@ import {
 } from "motion/react";
 import { wrap } from "@motionone/utils";
 import { FaSquareXTwitter } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
 
 interface ParallaxProps {
   children: string;
@@ -54,6 +55,7 @@ export default function Home() {
   const footerRef = useRef(null); // Reference for the footer
   const footerIsInView = useInView(footerRef, { once: true });
   const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const router = useRouter();
 
   const containerVariants = {
     hidden: { opacity: 1 }, // Keeps the container visible
@@ -82,10 +84,11 @@ export default function Home() {
     window.open(whatsappUrl, "_blank");
   };
   return (
-    <div className="font-libreFranklin relative w-full h-full flex flex-col items-center justify-center">
+    <div className="font-libreFranklin relative w-full h-full flex flex-col items-center justify-center bg-white">
+      {/* whatsapp float */}
       <a
         title="whatsapp icons"
-        className="h-10 w-10 sticky top-[90%] sm:left-[90%]  left-[80%] z-50 cursor-pointer "
+        className="h-14 w-14 sticky top-[90%] sm:left-[90%]  left-[80%] z-50 cursor-pointer "
         onClick={redirectToWhatsApp}
       >
         <Image
@@ -93,11 +96,12 @@ export default function Home() {
           alt="whatsapp"
           width={50}
           height={50}
-          className="h-10 w-10 cursor-pointer"
+          className="h-14 w-14 cursor-pointer"
         />
       </a>
+      {/* header */}
       <section className=" w-full sm:h-[100vh] h-full">
-        <div className="w-full sm:h-[15vh] h-full bg-black text-white py-5 text-center ">
+        <div className="w-full sm:h-[15vh] h-full bg-black text-white py-5 text-center -mt-14">
           <ParallaxText baseVelocity={2}>
             LEADING THE MARKETING EVOLUTION
           </ParallaxText>
@@ -141,10 +145,11 @@ export default function Home() {
           )}
         </div>
       </section>
-      {/* <section className="w-full h-[100vh] bg-white"></section> */}
+
+      {/* head caption */}
       <section
         ref={ref}
-        className="z-10 w-full sm:py-0 py-5 sm:h-[100vh] h-full bg-white text-black flex flex-col justify-center gap-20 sm:px-48 px-5"
+        className="z-10 w-full sm:py-0 py-5 sm:h-[100vh] h-full bg-white text-black flex flex-col justify-center gap-5 sm:px-48 px-5"
       >
         <motion.div
           className="sm:text-5xl text-2xl leading-relaxed"
@@ -175,7 +180,8 @@ export default function Home() {
           -We&apos;ve Done It Before. Let&apos;s Do It for You!
         </motion.p>
       </section>
-      <section className="w-full h-[50vh] bg-black z-10">
+      {/* ai image */}
+      <section className="w-full sm:h-[80vh] h-[50vh] bg-black z-10">
         <Image
           src="/ai_b.PNG"
           alt="ai generated image"
@@ -184,9 +190,10 @@ export default function Home() {
           className="w-full h-full object-cover"
         />
       </section>
+      {/* expertise list */}
       <section
         ref={containerRef}
-        className="relative w-full h-full bg-white z-10 text-black sm:px-48 px-5 py-16"
+        className="relative w-full h-full bg-white z-10 text-black sm:px-48 px-5 pt-16 pb-3"
       >
         {/* Title */}
         <h1 className=" bg-white w-full text-center sm:text-4xl text-2xl font-bold mb-8">
@@ -226,7 +233,7 @@ export default function Home() {
           “UNIFI PRO IS THE Ultimate Hub for E-commerce Marketing Solutions”
         </h2>
       </section>
-
+      {/* difference */}
       <section
         ref={diffRef}
         className="w-full sm:h-[100vh] h-full bg-white z-10 text-black sm:px-48 px-5 py-10"
@@ -245,7 +252,7 @@ export default function Home() {
         {/* Content */}
         <div className="h-full flex flex-col items-center justify-center gap-10">
           <motion.p
-            className="sm:text-4xl text-2xl"
+            className="sm:text-4xl text-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: diffIsInView ? 1 : 0 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -256,7 +263,7 @@ export default function Home() {
           </motion.p>
 
           <motion.p
-            className="sm:text-4xl text-2xl"
+            className="sm:text-4xl text-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: diffIsInView ? 1 : 0 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -322,7 +329,7 @@ export default function Home() {
         <Image
           width={1400}
           height={500}
-          src="/charminar.jpg"
+          src="/drone.jpg"
           alt="map"
           className="w-full object-contain"
         />
@@ -349,22 +356,45 @@ export default function Home() {
               initial={{ opacity: 0, y: 50 }}
               animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.2 }}
+              onClick={() =>
+                router.push(
+                  "https://www.instagram.com/raghava_badisa?igsh=eTVmbjR2ZDN1Mmxy&utm_source=qr"
+                )
+              }
             >
-              <FaInstagram className="text-white h-8 w-8 md:h-12 md:w-12" />
+              <FaInstagram className="text-white h-8 w-8 md:h-12 md:w-12 cursor-pointer" />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.4 }}
+              onClick={() =>
+                router.push(
+                  "https://in.linkedin.com/in/raghava-badisa-129b4a186"
+                )
+              }
             >
-              <FaLinkedin className="text-white h-8 w-8 md:h-12 md:w-12" />
+              <FaLinkedin className="text-white h-8 w-8 md:h-12 md:w-12 cursor-pointer" />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.4 }}
+              onClick={() => router.push("https://twitter.com/raghavabadisa")}
             >
-              <FaSquareXTwitter className="text-white h-8 w-8 md:h-12 md:w-12" />
+              <FaSquareXTwitter className="text-white h-8 w-8 md:h-12 md:w-12 cursor-pointer" />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1, delay: 0.4 }}
+              onClick={() =>
+                router.push(
+                  "https://youtube.com/@raghava9999?si=ZfVpEcvNJAWPS17-"
+                )
+              }
+            >
+              <FaYoutube className="text-white h-8 w-8 md:h-12 md:w-12 cursor-pointer" />
             </motion.div>
           </div>
           <motion.p
