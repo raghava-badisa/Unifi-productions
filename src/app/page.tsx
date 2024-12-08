@@ -274,8 +274,30 @@ export default function Home() {
           </motion.p>
         </div>
       </section>
-      <section className="w-full h-[50vh] bg-black z-10">
-        ANIMATED VIDEO
+      <section className="w-full sm:h-[90vh] h-[90vh] bg-black text-white text-center">
+        {isDesktop ? (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-[1920px] h-[580px] object-cover"
+          >
+            <source src="/ani_d.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-[90vh] object-cover"
+          >
+            <source src="/ani_m.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        )}
       </section>
       <section
         ref={founderRef}
