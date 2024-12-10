@@ -196,18 +196,18 @@ export default function Home() {
         className="relative w-full h-full bg-white z-10 text-black sm:px-48 px-5 pt-16 pb-3"
       >
         {/* Title */}
-        <h1 className=" bg-white w-full text-center sm:text-4xl text-2xl font-bold mb-8">
+        <h1 className=" bg-white w-full text-center sm:text-4xl text-3xl font-bold mb-8">
           OUR{" "}
           <span className="bg-yellow-300 px-3 py-1 rounded-sm">EXPERTISE</span>
         </h1>
 
         {/* Expertise List */}
         <div className="w-full ">
-          <ul className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-4">
+          <ul className="space-y-24 sm:grid sm:grid-cols-2 sm:gap-4">
             {expertiseList.map((item, index) => (
               <motion.li
                 key={index}
-                className="flex items-center justify-start text-lg sm:text-3xl font-medium gap-2"
+                className="flex flex-col items-center justify-start text-lg sm:text-3xl font-medium gap-2"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -217,7 +217,7 @@ export default function Home() {
                   <Image
                     src={item.icon}
                     alt={item.icon}
-                    width={50}
+                    width={250}
                     height={20}
                   />
                 </span>{" "}
@@ -240,7 +240,7 @@ export default function Home() {
       >
         {/* Title */}
         <motion.h1
-          className="text-center sm:text-4xl text-2xl font-bold pb-2"
+          className="text-center sm:text-4xl text-3xl font-bold pb-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: diffIsInView ? 1 : 0 }}
           transition={{ duration: 1 }}
@@ -274,7 +274,7 @@ export default function Home() {
           </motion.p>
         </div>
       </section>
-      <section className="w-full sm:h-[90vh] h-[90vh] bg-black text-white text-center">
+      <section className="w-full sm:h-[80vh] h-[90vh] bg-black text-white text-center">
         {isDesktop ? (
           <video
             autoPlay
@@ -294,7 +294,7 @@ export default function Home() {
             playsInline
             className="w-full h-[90vh] object-cover"
           >
-            <source src="/ani_m.MP4" type="video/mp4" />
+            <source src="/ani_d.MP4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         )}
