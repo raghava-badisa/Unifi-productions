@@ -203,11 +203,11 @@ export default function Home() {
 
         {/* Expertise List */}
         <div className="w-full ">
-          <ul className="space-y-24 sm:grid sm:grid-cols-2 sm:gap-4">
+          <ul className="sm:grid sm:grid-cols-2 sm:gap-5">
             {expertiseList.map((item, index) => (
               <motion.li
                 key={index}
-                className="flex flex-col items-center justify-start text-lg sm:text-3xl font-medium gap-2"
+                className="flex flex-col items-center text-lg sm:text-3xl font-medium gap-2 my-10"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -217,12 +217,12 @@ export default function Home() {
                   <Image
                     src={item.icon}
                     alt={item.icon}
-                    width={250}
+                    width={150}
                     height={20}
                   />
                 </span>{" "}
                 {/* Use an arrow or point */}
-                <span>{item.title}</span>
+                <span className="mt-5">{item.title}</span>
               </motion.li>
             ))}
           </ul>
