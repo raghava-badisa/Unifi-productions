@@ -342,9 +342,16 @@ export default function Home() {
         <Image
           width={1400}
           height={500}
-          src="/drone.jpg"
+          src="/map_d.jpg"
           alt="map"
-          className="w-full object-contain"
+          className="w-full object-contain sm:block hidden"
+        />
+        <Image
+          width={1400}
+          height={500}
+          src="/map_m.jpg"
+          alt="map"
+          className="w-full object-contain sm:hidden block"
         />
         <iframe
           width="80%"
