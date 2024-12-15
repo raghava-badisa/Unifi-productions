@@ -119,30 +119,21 @@ export default function Home() {
             className="h-full object-contain"
           />
         </div>
-        <div className="w-full sm:h-[100vh] h-[90vh] bg-black text-white text-center">
-          {isDesktop ? (
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-[1920px] h-[580px] object-cover"
-            >
-              <source src="/video_d.MP4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          ) : (
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-[90vh] object-cover"
-            >
-              <source src="/video_m.MP4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          )}
+        <div className="w-full sm:h-[100vh] h-full bg-black text-white text-center">
+          <Image
+            src={"/banner_d.JPG"}
+            width={1350}
+            height={900}
+            alt="banner"
+            className="w-full h-full object-cover sm:block hidden"
+          />
+          <Image
+            src={"/banner_m.JPG"}
+            width={1350}
+            height={900}
+            alt="banner"
+            className="w-full h-full object-contain sm:hidden block"
+          />
         </div>
       </section>
 
@@ -208,8 +199,8 @@ export default function Home() {
               <motion.li
                 key={index}
                 className="flex flex-col items-center text-lg sm:text-3xl font-medium gap-2 my-10"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
               >
@@ -240,7 +231,7 @@ export default function Home() {
       >
         {/* Title */}
         <motion.h1
-          className="text-center sm:text-3  xl text-3xl font-bold pb-2"
+          className="text-center sm:text-3xl text-2xl font-bold pb-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: diffIsInView ? 1 : 0 }}
           transition={{ duration: 1 }}
