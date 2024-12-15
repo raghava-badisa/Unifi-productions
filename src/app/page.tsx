@@ -217,12 +217,12 @@ export default function Home() {
                   <Image
                     src={item.icon}
                     alt={item.icon}
-                    width={150}
+                    width={100}
                     height={20}
                   />
                 </span>{" "}
                 {/* Use an arrow or point */}
-                <span className="mt-5">{item.title}</span>
+                <span className="mt-5 sm:text-xl">{item.title}</span>
               </motion.li>
             ))}
           </ul>
@@ -240,7 +240,7 @@ export default function Home() {
       >
         {/* Title */}
         <motion.h1
-          className="text-center sm:text-4xl text-3xl font-bold pb-2"
+          className="text-center sm:text-3  xl text-3xl font-bold pb-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: diffIsInView ? 1 : 0 }}
           transition={{ duration: 1 }}
