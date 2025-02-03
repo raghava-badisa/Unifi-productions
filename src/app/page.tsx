@@ -469,7 +469,7 @@ export default function Home() {
             animate={footerIsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 1.6 }}
           >
-            Plot No. 833, 9th Phase,
+            9th Phase,
           </motion.p>
           <motion.p
             className="text-xs md:text-sm"
